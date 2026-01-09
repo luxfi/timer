@@ -60,48 +60,6 @@ func (c *Clock) Unix() uint64 {
 	return uint64(unix)
 }
 
-// StoppedTimer is a timer that can be stopped and checked
-type StoppedTimer struct {
-	timer    *time.Timer
-	finished bool
-	mu       sync.Mutex
-}
-
-// NewStoppedTimer returns a new stopped timer
-func NewStoppedTimer(f func()) *StoppedTimer {
-	t := &StoppedTimer{}
-	t.timer = time.AfterFunc(time.Hour, func() {
-		t.mu.Lock()
-		t.finished = true
-		t.mu.Unlock()
-		f()
-	})
-	t.timer.Stop()
-	return t
-}
-
-// Reset resets the timer with the given duration
-func (t *StoppedTimer) Reset(d time.Duration) {
-	t.mu.Lock()
-	defer t.mu.Unlock()
-	t.finished = false
-	t.timer.Reset(d)
-}
-
-// Stop stops the timer
-func (t *StoppedTimer) Stop() bool {
-	t.mu.Lock()
-	defer t.mu.Unlock()
-	return t.timer.Stop()
-}
-
-// Finished returns whether the timer has finished
-func (t *StoppedTimer) Finished() bool {
-	t.mu.Lock()
-	defer t.mu.Unlock()
-	return t.finished
-}
-
 // Meter tracks event rates
 type Meter struct {
 	mu       sync.Mutex
@@ -123,11 +81,11 @@ func NewMeter(halflife time.Duration) *Meter {
 func (m *Meter) Tick() {
 	m.mu.Lock()
 	defer m.mu.Unlock()
-	
+
 	now := time.Now()
 	elapsed := now.Sub(m.previous)
 	m.previous = now
-	
+
 	if elapsed > 0 && m.halflife > 0 {
 		decay := elapsed.Seconds() / m.halflife.Seconds()
 		m.rate = m.rate*powHalf(decay) + 1
@@ -139,10 +97,10 @@ func (m *Meter) Tick() {
 func (m *Meter) Rate() float64 {
 	m.mu.Lock()
 	defer m.mu.Unlock()
-	
+
 	now := time.Now()
 	elapsed := now.Sub(m.previous)
-	
+
 	if elapsed > 0 && m.halflife > 0 {
 		decay := elapsed.Seconds() / m.halflife.Seconds()
 		return m.rate * powHalf(decay)
@@ -170,7 +128,7 @@ func exp(x float64) float64 {
 	if x > 10 || x < -10 {
 		return 0 // decay to 0 for very old events
 	}
-	
+
 	result := 1.0
 	term := 1.0
 	for i := 1; i < 20; i++ {

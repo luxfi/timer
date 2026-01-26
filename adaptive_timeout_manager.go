@@ -12,8 +12,8 @@ import (
 	"github.com/luxfi/math"
 	"github.com/luxfi/metric"
 
+	"github.com/luxfi/container/heap"
 	"github.com/luxfi/ids"
-	"github.com/luxfi/utils/heap"
 	"github.com/luxfi/timer/mockable"
 )
 

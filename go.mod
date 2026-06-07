@@ -1,6 +1,6 @@
 module github.com/luxfi/timer
 
-go 1.26.3
+go 1.26.4
 
 require (
 	github.com/luxfi/container v0.0.4

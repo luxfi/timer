@@ -3,10 +3,10 @@ module github.com/luxfi/timer
 go 1.26.4
 
 require (
-	github.com/luxfi/container v0.0.4
-	github.com/luxfi/ids v1.2.9
-	github.com/luxfi/math v1.4.0
-	github.com/luxfi/metric v1.5.1
+	github.com/luxfi/container v0.2.1
+	github.com/luxfi/ids v1.3.2
+	github.com/luxfi/math v1.5.1
+	github.com/luxfi/metric v1.8.1
 	github.com/stretchr/testify v1.11.1
 )
 
@@ -18,14 +18,14 @@ require (
 	github.com/holiman/uint256 v1.3.2 // indirect
 	github.com/luxfi/accel v1.0.7 // indirect
 	github.com/luxfi/atomic v1.0.0 // indirect
-	github.com/luxfi/cache v1.2.1 // indirect
-	github.com/luxfi/constants v1.4.7 // indirect
-	github.com/luxfi/crypto v1.19.0 // indirect
-	github.com/luxfi/geth v1.16.79 // indirect
+	github.com/luxfi/cache v1.3.1 // indirect
+	github.com/luxfi/constants v1.6.2 // indirect
+	github.com/luxfi/crypto v1.20.2 // indirect
+	github.com/luxfi/geth v1.20.1 // indirect
 	github.com/luxfi/math/big v0.1.0 // indirect
 	github.com/luxfi/mock v0.1.1 // indirect
 	github.com/luxfi/sampler v1.1.0 // indirect
-	github.com/luxfi/utils v1.1.4 // indirect
+	github.com/luxfi/utils v1.3.1 // indirect
 	github.com/mr-tron/base58 v1.2.0 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	go.uber.org/mock v0.6.0 // indirect
